@@ -1,0 +1,71 @@
+﻿@using Bulky.Models
+@model Company
+
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="Id" type="hidden" />
+    <div class="row">
+        <div class="col-12">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                    <h2 class="text-dark">@(Model.Id != 0 ? "Update" : "Create") Company</h2>
+                    <hr />
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="Name" class="p-0 mb-2"></label>
+                    <input asp-for="Name" type="text" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="PhoneNumber" class="p-0 mb-2"></label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="StreetAddress" class="p-0 mb-2"></label>
+                    <input asp-for="StreetAddress" type="text" class="form-control" />
+                    <span asp-validation-for="StreetAddress" class="text-danger p-0"></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="City" class="p-0 mb-2"></label>
+                    <input asp-for="City" type="text" class="form-control" />
+                    <span asp-validation-for="City" class="text-danger p-0"></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="State" class="p-0 mb-2"></label>
+                    <input asp-for="State" type="text" class="form-control" />
+                    <span asp-validation-for="State" class="text-danger p-0"></span>
+                </div>
+                <div class="mb-3 row">
+                    <label asp-for="PostalCode" class="p-0 mb-2"></label>
+                    <input asp-for="PostalCode" type="text" class="form-control" />
+                    <span asp-validation-for="PostalCode" class="text-danger p-0"></span>
+                </div>
+ 
+                @if (Model.Id != 0)
+                {
+                    <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+                }
+
+                <a asp-controller="Company" asp-action="Index" class="text-primary p-0">Back to List</a>
+            </div>
+        </div>
+    </div>
+    
+</form>
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}
